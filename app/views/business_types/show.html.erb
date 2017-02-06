@@ -1,10 +1,33 @@
 <h1><%= @business_type.name %></h1>
 
+
+
+
+<% if @business_type.businesses.any? %>
+<h4>Here are all the listings for this business type:</h4>
+<ul>
+  <% @business_type.businesses.each do |business| %>
+  <li>
+    <%= business.name %> |
+    <%= link_to "Edit", edit_business_type_business_path(@business_type, business) %> |
+    <%= link_to "Delete", business_type_business_path(@business_type, business),
+                                                      :data => { :confirm => "for real?",
+                                                      :method => "delete"} %>
+  </li>
+  <% end %>
+</ul>
+<% else %>
+  <p>
+    There are no Businesses of this type yet.
+  </p>
+<% end %>
+
+
 <p> <%= link_to "Edit", edit_business_type_path(@business_type) %>
 <p> <%= link_to "Delete", business_type_path(@business_type),
                           :data => {:confirm => "You sure bruh?",
                                     :method => "delete"}%></p>
-                                    
+
 <p>
   <%= link_to "Return to Types", business_types_path %>
 </p>
