@@ -1,4 +1,10 @@
-<h1><%= @business_types.name %></h1>
+<h1><%= @business_type.name %></h1>
+
+<p> <%= link_to "Edit", edit_business_type_path(@business_type) %>
+<p> <%= link_to "Delete", business_type_path(@business_type),
+                          :data => {:confirm => "You sure bruh?",
+                                    :method => "delete"}%></p>
+                                    
 <p>
   <%= link_to "Return to Types", business_types_path %>
 </p>
