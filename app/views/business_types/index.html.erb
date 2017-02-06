@@ -1,0 +1,7 @@
+<h1>Business Types</h1>
+
+<ul>
+  <% @business_types.each do |type| %>
+    <li><%= link_to type.name, business_type_path(type) %></li>
+  <% end %>
+</ul>
