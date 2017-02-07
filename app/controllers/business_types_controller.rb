@@ -5,6 +5,7 @@ class BusinessTypesController < ApplicationController
 
   def show
     @business_type = BusinessType.find(params[:id])
+    @current_user = current_user
   end
 
   def new
@@ -14,6 +15,7 @@ class BusinessTypesController < ApplicationController
   def create
     @business_type = BusinessType.new(business_type_params)
     if @business_type.save
+      flash[:notice] = "List successfully added!"
       redirect_to business_types_path
     else
       render :new
@@ -35,6 +37,10 @@ class BusinessTypesController < ApplicationController
 
   def destroy
     @business_type = BusinessType.find(params[:id])
+    @businesses = @business_type.businesses
+    @businesses.each do |b|
+      b.destroy
+    end
     @business_type.destroy
     redirect_to business_types_path
   end

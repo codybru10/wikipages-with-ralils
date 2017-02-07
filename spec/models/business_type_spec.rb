@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe BusinessType do
-  it { should validate_presence_of :name }
-  it { should have_many :businesses }
+  it 'validates presence of name' do
+    business = FactoryGirl.create(:business_type)
+    business.name.should eq 'Education'
+  end
 end

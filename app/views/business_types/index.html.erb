@@ -1,7 +1,18 @@
 <h1>Business Types</h1>
 
+<%= render 'nav' %>
+
 <ul>
   <% @business_types.each do |type| %>
-    <li><%= link_to type.name, business_type_path(type) %></li>
+    <div class="well">
+      <h6><%= link_to type.name, business_type_path(type) %></h6>
+    </div>
   <% end %>
 </ul>
+
+
+<p>
+  <%= link_to "NEW BUSINESS", new_business_type_path %>
+</p>
+
+<%= image_tag "rails.png" %>

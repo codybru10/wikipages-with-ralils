@@ -1,5 +1,7 @@
-<h1><%= @business_type.name %></h1>
+<% content_for(:title, "K DUMMB") %>
+<%= render 'nav' %>
 
+<h1><%= @business_type.name %></h1>
 
 
 
@@ -9,7 +11,7 @@
   <% @business_type.businesses.each do |business| %>
   <li>
     <%= business.name %> |
-    <%= link_to "Edit", edit_business_type_business_path(@business_type, business) %> |
+    <%= link_to "Edit Business", edit_business_type_business_path(@business_type, business) %> |
     <%= link_to "Delete", business_type_business_path(@business_type, business),
                                                       :data => { :confirm => "for real?",
                                                       :method => "delete"} %>
@@ -23,11 +25,12 @@
 <% end %>
 
 
-<p> <%= link_to "Edit", edit_business_type_path(@business_type) %>
-<p> <%= link_to "Delete", business_type_path(@business_type),
-                          :data => {:confirm => "You sure bruh?",
-                                    :method => "delete"}%></p>
+<p> <%= link_to "Edit", edit_business_type_path(@business_type) %> |
 
-<p>
-  <%= link_to "Return to Types", business_types_path %>
-</p>
+ <%= link_to "Delete", business_type_path(@business_type),
+                          :data => {:confirm => "You sure bruh?",
+                                    :method => "delete"}%> |
+
+<%= link_to "New", new_business_type_business_path(@business_type) %>
+
+<p><%= link_to "Return to Types", business_types_path %></p>

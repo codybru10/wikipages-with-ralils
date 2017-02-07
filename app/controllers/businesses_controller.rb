@@ -20,9 +20,10 @@ class BusinessesController < ApplicationController
   end
 
   def update
+    @bt = BusinessType.find(params[:business_type_id])
     @business = Business.find(params[:id])
     if @business.update(business_params)
-      redirect_to business_type_path
+      redirect_to business_type_path(@bt)
     else
       render :edit
     end
@@ -31,7 +32,7 @@ class BusinessesController < ApplicationController
   def destroy
     @business = Business.find(params[:id])
     @business.destroy
-    redirect_to business_type_path
+    redirect_to business_type_path(@business.business_type_id)
   end
 
 
